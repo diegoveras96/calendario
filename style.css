@@ -120,6 +120,7 @@ tbody .diaAtual{
     font-size: 32px;
     transition: all 0.2s ease-in-out;
     text-transform: capitalize;
+    visibility: hidden;
 }
 
 .boxSearch > .search{

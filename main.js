@@ -42,13 +42,15 @@ document.addEventListener('DOMContentLoaded', function () {
             //AQUI VAI SER CRIADA A NOVA DIV
             let boxSearch = document.createElement('div');
             let container = document.querySelector('.boxSearch');
+            
             boxSearch.classList.add('search');
 
+            container.style.visibility = 'visible';
             document.querySelector('.calendario').style.visibility = 'hidden';
-            boxSearch.innerHTML = `<div data-mes = ${i}>${mesNome}<\div>`;
-            
-            container.appendChild(boxSearch);
-        })  
+            boxSearch.innerHTML = `<span data-mes = ${i} > ${mesNome}  </span>`;
+
+            container.appendChild(boxSearch);     
+        })
      })
 
     next.onclick = function () {
