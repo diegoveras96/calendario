@@ -1,0 +1,130 @@
+@charset "utf8";
+@font-face {
+    font-family: 'Avenir Next';
+    src:url('fonts/AvenirNext-Regular.woff2') format('woff2'),
+        url('fonts/AvenirNext-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir Next Demi';
+    src:url('fonts/AvenirNext-DemiBold.woff2') format('woff2'),
+        url('fonts/AvenirNext-DemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir Next';
+    src:url('fonts/AvenirNext-Bold.woff2') format('woff2'),
+        url('fonts/AvenirNext-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+:root{
+    --principal: #EB194B;
+    --secundaria: #B5133A;
+    --diaAtual: #b10029;
+    --selecao: #ff5672;
+    --cinza1: #cbd1d2;
+    --cinza2: #f9f9f9;
+}
+
+.calendario{
+    margin: auto;
+    text-align: center;
+    font-family: "Avenir Next Demi";
+    text-transform: capitalize;
+    background-color: var(--principal);
+    width: 50vw;
+    border-radius: 30px;
+    color: white;
+    font-size: 2vw;
+}
+
+h2{
+    cursor: pointer;
+    font-family: "Avenir Next Demi";
+    display: inline-block;
+}
+
+.btn-ant, .btn-pro{
+    cursor: pointer;
+    position: absolute;
+    top: 3.2vw;
+    height: 3vw;
+    width: 3vw;
+    line-height: 3vw;
+    border: 4px solid var(--cinza1);
+    border-radius: 50%;
+    color: var(--cinza1);
+    font-weight: bold;
+}
+
+.btn-ant{
+    left: 30%;
+}
+.btn-pro{
+    right: 30%;
+}
+.btn-ant:hover,.btn-pro:hover{
+    background-color: var(--cinza1);
+    color: var(--cinza2);
+}
+
+table { 
+    position: relative;
+    display: table;
+    padding: 10px;
+}
+table th, table td { 
+    width: 14.28%; 
+    text-align: center; 
+    text-transform: uppercase; 
+    padding: 0.8vw;
+}
+
+table tbody td { transition: all .1s;     cursor: pointer;
+}
+
+table tbody td:hover { 
+    background-color: var(--selecao);
+    color: var(--principal); 
+    border-radius: 10px;
+}
+
+tbody .diaAtual{
+    background-color: var(--selecao);
+    color: var(--diaAtual);
+    border-radius: 10px; 
+}
+ 
+.calendario .mesAnterior, .calendario .proximoMes{color: gray;}
+.calendario .mesAnterior:hover, .calendario .proximoMes:hover{background: var(--cinza1); border-radius: 10px;}
+
+.boxSearch {
+    position: absolute;
+    border: solid 1px black;
+    display: flex;
+    flex-wrap: wrap;
+    width: 50vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    transition: all 0.2s ease-in-out;
+    text-transform: capitalize;
+}
+
+.boxSearch > .search{
+    margin: 15px;
+    min-width: 30%;
+    cursor: pointer;
+    text-align: center;
+}
