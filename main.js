@@ -115,13 +115,6 @@ document.addEventListener('DOMContentLoaded', function () {
              let opcoes = document.getElementsByTagName('span')[i];
              confirmarOpc(opcoes)  
         }
-        // let escAno = document.createElement('div');
-        // let container = document.querySelector('.boxSearch');
-
-        // escAno.classList.add('confirmacao');
-        // escAno.innerHTML = `<input class = "anoEscolhido" type="number" placeholder = "2022" maxLenght={4} value=${ano}><input id="send" type="submit" value="Enviar">`
-
-        // container.appendChild(escAno);
     }
 
     next.onclick = function () {
