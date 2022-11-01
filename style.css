@@ -121,6 +121,7 @@ tbody .diaAtual{
     transition: all 0.2s ease-in-out;
     text-transform: capitalize;
     visibility: hidden;
+    z-index: -1;
 }
 
 .boxSearch > .search{
@@ -128,4 +129,11 @@ tbody .diaAtual{
     min-width: 30%;
     cursor: pointer;
     text-align: center;
+}
+
+.boxSearch > .search:hover{
+    background-color: var(--principal);
+    border-radius: 10px;
+    transition: ease-in-out .5;
+    color: white;
 }

@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     function getDaysCalendar(mes, ano) {
+        document.querySelector('.calendario').style.visibility = 'visible';
+        document.querySelector('.boxSearch').style.zIndex = "-1";
         document.querySelector('.mes').innerHTML = `${meses[mes]} ${ano}`;
         let firstDayOfWeek = new Date(ano, mes, 1).getDay() - 1; //pega o dia da semana que caiu o dia 1º
         let getLastDayThisMonth = new Date(ano, mes + 1, 0).getDate();
@@ -12,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let dayTable = tableDays.getElementsByTagName('td')[index]; //Pega a cada TR das TDs 
             dayTable.classList.remove('mesAnterior');
             dayTable.classList.remove('proximoMes');
-            dayTable.classList.remove('diaAtual')
+            dayTable.classList.remove('diaAtual');
             dayTable.innerHTML = dt.getDate(); //Altera o valor de acordo com o dia
 
             if (i < 1) {
@@ -27,6 +29,14 @@ document.addEventListener('DOMContentLoaded', function () {
             dt = new Date(ano, mes, i)
             dayTable = tableDays.getElementsByTagName('td')[index]
         }
+    }
+
+    function escoherMes(opcoes){
+        document.querySelector('.boxSearch').style.zIndex = "2";
+        opcoes.addEventListener("click", (evento)=>{
+            mes = evento.target.dataset.mes;
+            return getDaysCalendar(mes, ano);
+        })
     }
 
     const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
@@ -49,7 +59,12 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('.calendario').style.visibility = 'hidden';
             boxSearch.innerHTML = `<span data-mes = ${i} > ${mesNome}  </span>`;
 
-            container.appendChild(boxSearch);     
+            //document.body.innerHTML += container.innerHTML;
+             container.appendChild(boxSearch);
+
+            let opcoes = document.getElementsByTagName('span')[i];
+            
+            escoherMes(opcoes)
         })
      })
 
