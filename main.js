@@ -56,19 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // function confirmarOpc(mes){
-    //     let escAno = document.createElement('div');
-    //     let container = document.querySelector('.boxSearch');
-
-    //     escAno.classList.add('escolherAno');
-    //     escAno.innerHTML = `<input type="number" placeholder = "2022" maxLenght={4} value=${ano}><input type="submit" value="Enviar">`
-    //     //escAno.innerHTML = `<input type="submit" value="Enviar">`
-    //     ano = document.querySelector('.escolherAno')
-    //     container.appendChild(escAno);
-
-    //     return botaoOk(mes, ano);
-    // }
-
     const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
     let mes = new Date().getMonth();
     let ano = new Date().getFullYear();
@@ -78,26 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const preview = document.getElementById('preview');
     const next = document.getElementById('next');
-
-    // meses.forEach((mesNome,i) =>{
-    //     dataCalendario.addEventListener("click", ()=>{
-    //         //AQUI VAI SER CRIADA A NOVA DIV
-    //         let boxSearch = document.createElement('div');
-    //         let container = document.querySelector('.boxSearch');
-            
-    //         boxSearch.classList.add('search');
-
-    //         calendario.style.visibility = 'hidden';
-    //         boxSearch.innerHTML = `<span data-mes = ${i} > ${mesNome}  </span>`;
-    //         //ano = boxSearch.innerHTML = `<input type="number" placeholder = "2022" maxLenght={4} value=${ano}><\input>`
-    //         //document.body.innerHTML += container.innerHTML;
-    //         container.appendChild(boxSearch);
-
-    //         let opcoes = document.getElementsByTagName('span')[i];
-            
-    //         escoherMes(opcoes)
-    //     })
-    // })
 
     dataCalendario.onclick = ()=>{
        
