@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.boxSearch').style.zIndex = "2";
         opcoes.addEventListener("click", (evento)=>{
             mes = evento.target.dataset.mes;
-
             return escolherAno(mes);
         })
     }
@@ -45,13 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
         let container = document.querySelector('.boxSearch');
 
         escAno.classList.add('confirmacao');
-        escAno.innerHTML = `<input class = "anoEscolhido" type="number" placeholder = "2022" maxLenght={4} value=${ano}><input id="send" type="submit" value="Enviar">`
+        escAno.innerHTML = `<input class = "anoEscolhido" type="number" placeholder = "2022" value=${ano}><input id="send" type="submit" value="Enviar">`
 
         container.appendChild(escAno);
         btn = document.querySelector('input#send')
         btn.onclick = ()=>{
             ano = document.querySelector('.anoEscolhido')
-            console.log(ano)
+            console.log(ano.value)
             getDaysCalendar(mes, ano.value)
         }
     }
@@ -76,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             calendario.style.visibility = 'hidden';
             boxSearch.innerHTML = `<span data-mes = ${i} > ${meses[i]}  </span>`;
-            //ano = boxSearch.innerHTML = `<input type="number" placeholder = "2022" maxLenght={4} value=${ano}><\input>`
             container.appendChild(boxSearch);
 
              let opcoes = document.getElementsByTagName('span')[i];
