@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    //Abre painel de escolha do mês
     function confirmarOpc(opcoes){
         opcoes.classList.remove('clicado');
 
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
 
+    //O usuário escolhe o ano
     function escolherAno(mes, opcoes){
         let escAno = document.createElement('div');
         let container = document.querySelector('.boxSearch');
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.onclick = ()=>{
             ano = document.querySelector('.anoEscolhido').value;
 
-            if (ano < anoMin || ano > anoMax){
+            if (ano < anoMin || ano > anoMax){ //O ano tem que estar em um intervalo de +/- 100 anos do ano atual
                 alert('Ano inválido');
                 return;
             }
@@ -95,12 +97,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    //Botões de avanço ou retrocesso
     next.onclick = function () {
         mes++;
         if (mes > 11) {
             mes = 0;
             ano++;
-            if(ano+100 >= anoMax){
+            if(ano+100 >= anoMax){ //Verificação e definição da data limite do calendário
                 mes = 11;
                 ano = anoMax;
             }
@@ -112,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (mes < 0) {
             mes = 11;
             ano--;
-            if(ano-100 <= anoMin){
+            if(ano-100 <= anoMin){ //Verificação e definição da data limite do calendário
                 mes = 0;
                 ano = anoMin
             }
