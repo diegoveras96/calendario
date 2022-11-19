@@ -90,7 +90,7 @@ table th, table td {
     padding: 0.8vw;
 }
 
-table tbody td { transition: all .1s;     cursor: pointer;
+table tbody td { transition: all .1s; cursor: pointer;
 }
 
 table tbody td:hover { 
@@ -113,7 +113,7 @@ tbody .diaAtual{
     border: solid 1px black;
     display: flex;
     flex-wrap: wrap;
-    width: 50vw;
+    width: 48vw;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -121,6 +121,7 @@ tbody .diaAtual{
     transition: all 0.2s ease-in-out;
     text-transform: capitalize;
     z-index: -1;
+    columns: 3;
 }
 
 .boxSearch > .search{
@@ -140,7 +141,7 @@ tbody .diaAtual{
 .clicado{
     background-color: var(--principal);
     color: white;
-    width: 100%;
+    padding: .2vh 2vw;
     transition: ease-in-out .5;
-    border-radius: 5px;
+    border-radius: 10px;
 }
