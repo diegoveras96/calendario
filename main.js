@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     function getDaysCalendar(mes, ano) {
+        let bSearch = document.querySelector('.boxSearch');
         calendario.style.visibility = 'visible';
-        document.querySelector('.boxSearch').style.zIndex = "-1";
+        bSearch.style.zIndex = "-1";
         dataCalendario.innerHTML = `${meses[mes]} ${ano}`;
         let firstDayOfWeek = new Date(ano, mes, 1).getDay() - 1; //pega o dia da semana que caiu o dia 1º
         let getLastDayThisMonth = diasMeses[mes];
@@ -36,11 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Abre painel de escolha do mês
     function confirmarOpc(opcoes){
-        opcoes.classList.remove('clicado');
-
         let container = document.querySelector('.boxSearch');
         container.style.zIndex = "2";
-        
+
         opcoes.addEventListener("click", (evento)=>{
             mes = evento.target.dataset.mes;
             return escolherAno(mes, opcoes);
@@ -49,44 +48,82 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //O usuário escolhe o ano
     function escolherAno(mes, opcoes){
+
         let escAno = document.createElement('div');
         let container = document.querySelector('.boxSearch');
         
         opcoes.classList.add('clicado');
         escAno.classList.add('confirmacao');
-        escAno.innerHTML = `<input class = "anoEscolhido" type="number" placeholder = "2022" value=${ano}><input id="send" type="submit" value="Enviar">`;
+        escAno.innerHTML = `<div id='opc'>
+                                <h1 class = "anoEscolhido" data-ano=${anoAt-2}>${anoAt-2}</h1>
+                                <h1 class = "anoEscolhido" data-ano=${anoAt-1}>${anoAt-1}</h1>
+                                <h1 class = "anoEscolhido" data-ano=${anoAt}>${anoAt}</h1>
+                            </div>`;
 
         container.appendChild(escAno);
-        btn = document.querySelector('input#send');
-        btn.onclick = ()=>{
-            ano = document.querySelector('.anoEscolhido').value;
-
-            if (ano < anoMin || ano > anoMax){ //O ano tem que estar em um intervalo de +/- 100 anos do ano atual
-                alert('Ano inválido');
-                return;
-            }
-            console.log('asdasdasdasdd\n' + mes, ano)
-            getDaysCalendar(mes, ano);
-        }
+        btn = document.querySelectorAll("[data-ano]");
+        btn.forEach( (elemento) =>{
+            elemento.addEventListener("click", (evento)=>{
+                ano = evento.target.dataset.ano;
+                if (mes > mesAt && ano >= anoAt){
+                    mes = mesAt;
+                }
+                let escMes = document.querySelectorAll('.search');
+                for(i = 0; i<12; i++){
+                    escMes[i].remove();
+                }
+                escAno.remove();
+        
+              //  container.parentNode.removeChild(container);
+                getDaysCalendar(mes, ano)
+            })
+        })
+                 
     }
+    
 
     const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
     const diasMeses = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     let mes = new Date().getMonth();
+    let mesAt= mes;
     let ano = new Date().getFullYear();
-    anoMin = ano - 100;
-    anoMax = ano + 100;
+    let anoAt = ano;
     let calendario = document.querySelector('.calendario');
     let dataCalendario = document.querySelector('.mes');
     const tableDays = document.querySelector('.dias');
+    const escDia = document.querySelectorAll('td')
+    
+    escDia.forEach( (elemento)=>{
+        elemento.onclick = ()=>{
+            let dia = elemento.textContent;
+            let data, dataMes = parseInt(mes+1), dataAno = ano;
+
+            if(elemento.className == "proximoMes"){
+                if (dataMes >= 12){
+                    dataMes = 1;
+                    dataAno ++;
+                } else{
+                    dataMes++;
+                }
+            } else if (elemento.className == "mesAnterior"){
+                if (dataMes <= 1){
+                    dataMes = 12;
+                    dataAno --;
+                } else{
+                    dataMes --;
+                }
+            }
+            data = String(dataAno) + ' ' + String(dataMes) + ' ' + String(dia);
+            console.log(data);
+    }
+    })
 
     const preview = document.getElementById('preview');
-    const next = document.getElementById('next');
 
     dataCalendario.onclick = ()=>{
+        let container = document.querySelector('.boxSearch');
         for (var i=0; i<12; i++){
             let boxSearch = document.createElement('div');
-            let container = document.querySelector('.boxSearch');
 
             boxSearch.classList.add('search');
 
@@ -95,20 +132,18 @@ document.addEventListener('DOMContentLoaded', function () {
             container.appendChild(boxSearch);
 
              let opcoes = document.getElementsByTagName('span')[i];
-             confirmarOpc(opcoes);
+             confirmarOpc(opcoes, boxSearch);
         }
     }
 
     //Botões de avanço ou retrocesso
     next.onclick = function () {
         mes++;
-        if (mes > 11) {
+        if (mes >= mesAt && ano >= anoAt){
+            mes = mesAt;
+        } else if (mes > 11) {
             mes = 0;
             ano++;
-            if(ano > anoMax){ //Verificação e definição da data limite do calendário
-                mes = 11;
-                ano = anoMax;
-            }
         }
         getDaysCalendar(mes, ano);
     }
@@ -117,9 +152,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (mes < 0) {
             mes = 11;
             ano--;
-            if(ano < anoMin){ //Verificação e definição da data limite do calendário
+            if(ano < anoAt-2){ //Verificação e definição da data limite do calendário
                 mes = 0;
-                ano = anoMin;
+                ano = anoAt-2;
             }
         }
         getDaysCalendar(mes, ano);
