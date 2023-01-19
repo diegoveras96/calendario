@@ -74,8 +74,9 @@ h2{
     right: 30%;
 }
 .btn-ant:hover,.btn-pro:hover{
-    background-color: var(--cinza1);
-    color: var(--cinza2);
+    background-color: var(--secundaria);
+    border-color: var(--secundaria);
+    color: var(--principal);
 }
 
 table { 
@@ -111,6 +112,9 @@ tbody .diaAtual{
 .boxSearch {
     position: absolute;
     border: solid 1px black;
+    border-radius: 30px;
+    background-color: var(--principal);
+    color: white;
     display: flex;
     flex-wrap: wrap;
     width: 48vw;
@@ -122,6 +126,7 @@ tbody .diaAtual{
     text-transform: capitalize;
     z-index: -1;
     columns: 3;
+
 }
 
 .boxSearch > .search{
@@ -132,14 +137,14 @@ tbody .diaAtual{
 }
 
 .boxSearch > .search:hover{
-    background-color: var(--principal);
+    background-color: var(--selecao);
     border-radius: 10px;
     transition: ease-in-out .5;
     color: white;
 }
 
 .clicado{
-    background-color: var(--principal);
+    background-color: var(--selecao);
     color: white;
     padding: .2vh 2vw;
     transition: ease-in-out .5;
@@ -155,6 +160,8 @@ tbody .diaAtual{
     margin: 2rem 5rem;
 }
 .anoEscolhido:hover{
-    background-color: var(--principal);
-    
+    background-color: var(--selecao);
+    border-radius: 10px;
+    transition: ease-in-out .5;
+    color: white;
 }

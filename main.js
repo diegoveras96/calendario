@@ -41,18 +41,23 @@ document.addEventListener('DOMContentLoaded', function () {
         container.style.zIndex = "2";
 
         opcoes.addEventListener("click", (evento)=>{
+            let marcado = document.querySelector('.clicado')
+            if(marcado != null){
+                marcado.classList.remove('clicado')
+            }
             mes = evento.target.dataset.mes;
-            return escolherAno(mes, opcoes);
+            opcoes.classList.add('clicado');
+
+            return escolherAno(mes);
         })
     }
 
     //O usuário escolhe o ano
-    function escolherAno(mes, opcoes){
+    function escolherAno(mes){
 
         let escAno = document.createElement('div');
         let container = document.querySelector('.boxSearch');
         
-        opcoes.classList.add('clicado');
         escAno.classList.add('confirmacao');
         escAno.innerHTML = `<div id='opc'>
                                 <h1 class = "anoEscolhido" data-ano=${anoAt-2}>${anoAt-2}</h1>
@@ -102,19 +107,32 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (dataMes >= 12){
                     dataMes = 1;
                     dataAno ++;
+                    mes = 0;
+                    ano++
                 } else{
                     dataMes++;
+                    mes++
+                    if (mes >= mesAt && ano >= anoAt){
+                        mes = mesAt;}
                 }
             } else if (elemento.className == "mesAnterior"){
                 if (dataMes <= 1){
                     dataMes = 12;
                     dataAno --;
+                    mes = 11;
+                    ano--
+                    if(ano < anoAt-2){ //Verificação e definição da data limite do calendário
+                        mes = 0;
+                        ano = anoAt-2;
+                    }
                 } else{
                     dataMes --;
+                    mes--;
                 }
             }
             data = String(dataAno) + ' ' + String(dataMes) + ' ' + String(dia);
             console.log(data);
+            getDaysCalendar(mes, ano)
     }
     })
 
