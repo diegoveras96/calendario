@@ -97,24 +97,34 @@ document.addEventListener('DOMContentLoaded', function () {
     let dataCalendario = document.querySelector('.mes');
     const tableDays = document.querySelector('.dias');
     const escDia = document.querySelectorAll('td')
+  
     
     escDia.forEach( (elemento)=>{
         elemento.onclick = ()=>{
             let dia = elemento.textContent;
-            let data, dataMes = parseInt(mes+1), dataAno = ano;
+            let data, dataMes = parseInt(parseInt(mes)+1), dataAno = ano;
 
             if(elemento.className == "proximoMes"){
                 if (dataMes >= 12){
+
                     dataMes = 1;
                     dataAno ++;
                     mes = 0;
-                    ano++
+                    if (ano >= anoAt){
+                        ano = anoAt;
+                        dataAno = ano;
+                    } else{
+                        ano++;
+                    }
                 } else{
                     dataMes++;
                     mes++
-                    if (mes >= mesAt && ano >= anoAt){
-                        mes = mesAt;}
+                    if (mes > mesAt && ano >= anoAt){
+                        mes = mesAt;
+                        ano = anoAt;
+                    }
                 }
+                console.log(mes, ano, dataMes, dataAno)
             } else if (elemento.className == "mesAnterior"){
                 if (dataMes <= 1){
                     dataMes = 12;
@@ -130,8 +140,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     mes--;
                 }
             }
+            
             data = String(dataAno) + ' ' + String(dataMes) + ' ' + String(dia);
-            console.log(data);
             getDaysCalendar(mes, ano)
     }
     })
