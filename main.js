@@ -70,15 +70,15 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.forEach( (elemento) =>{
             elemento.addEventListener("click", (evento)=>{
                 ano = evento.target.dataset.ano;
-                if (mes > mesAt && ano >= anoAt){
+                if (mes >= mesAt && ano >= anoAt){
                     mes = mesAt;
+                    ano = anoAt;
                 }
                 let escMes = document.querySelectorAll('.search');
                 for(i = 0; i<12; i++){
                     escMes[i].remove();
                 }
                 escAno.remove();
-        
               //  container.parentNode.removeChild(container);
                 getDaysCalendar(mes, ano)
             })
@@ -120,11 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     dataMes++;
                     mes++
                     if (mes > mesAt && ano >= anoAt){
-                        mes = mesAt;
                         ano = anoAt;
                     }
                 }
-                console.log(mes, ano, dataMes, dataAno)
             } else if (elemento.className == "mesAnterior"){
                 if (dataMes <= 1){
                     dataMes = 12;
@@ -140,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     mes--;
                 }
             }
-            
-            data = String(dataAno) + ' ' + String(dataMes) + ' ' + String(dia);
+            data = String(dataAno) + ' ' + String(dataMes) + ' ' + String(dia); //Variável que guarda a data no formato americano!
+            console.log(data)
             getDaysCalendar(mes, ano)
     }
     })
