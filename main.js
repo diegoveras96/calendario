@@ -46,11 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if(marcado != null){
                 marcado.classList.remove('clicado')
             }
-            mes = evento.target.dataset.mes;
+            mes = parseInt(evento.target.dataset.mes);
             opcoes.classList.add('clicado');
-            if(mes >= mesAt && ano >= anoAt){
-                mes = mesAt;
-            }
 
             return escolherAno(mes);
         })
@@ -74,16 +71,16 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.forEach( (elemento) =>{
             elemento.addEventListener("click", (evento)=>{
                 ano = evento.target.dataset.ano;
-                if (mes >= mesAt && ano >= anoAt){
-                    mes = mesAt;
-                    ano = anoAt;
-                }
                 let escMes = document.querySelectorAll('.search');
                 for(i = 0; i<12; i++){
                     escMes[i].remove();
                 }
                 escAno.remove();
               //  container.parentNode.removeChild(container);
+              if(mes >= mesAt && ano >= anoAt){
+                console.log(mesAt, mes, ano)
+                mes = mesAt;
+            }
                 getDaysCalendar(mes, ano)
             })
         })
@@ -103,11 +100,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const escDia = document.querySelectorAll('td')
   
     
-    // Passar mês pelas setinhas ou clicando em dia de mês seguinte + variável data
+    
     escDia.forEach( (elemento)=>{
         elemento.onclick = ()=>{
             let dia = elemento.textContent;
             let data, dataMes;
+
+            if (mes >= mesAt && ano >= anoAt){
+                mes = mesAt;
+                ano = anoAt;
+            }
 
             dataMes = parseInt(mes+1)
 
@@ -123,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 } else{
                     mes++;
-                    if(mes > mesAt && ano >= anoAt){
+                    if(mes >= mesAt && ano >= anoAt){
                         mes = mesAt;
                     }
                 }
@@ -142,8 +144,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     dataMes--;
                 }
             }
+            
             data = String(ano) + ' ' + String(dataMes) + ' ' + String(dia); //Variável que guarda a data no formato americano!
             console.log(data);
+
             getDaysCalendar(mes, ano);
     }
     })
