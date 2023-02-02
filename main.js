@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 escAno.remove();
               //  container.parentNode.removeChild(container);
               if(mes >= mesAt && ano >= anoAt){
-                console.log(mesAt, mes, ano)
                 mes = mesAt;
             }
                 getDaysCalendar(mes, ano)
