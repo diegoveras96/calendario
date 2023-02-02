@@ -61,9 +61,11 @@ h2{
     height: 3vw;
     width: 3vw;
     line-height: 3vw;
-    border: 4px solid var(--cinza1);
     border-radius: 50%;
-    color: var(--cinza1);
+    border: 4px solid var(--cinza1);
+    background-color: var(--secundaria);
+    border-color: var(--secundaria);
+    color: var(--principal);
     font-weight: bold;
 }
 
@@ -74,9 +76,9 @@ h2{
     right: 30%;
 }
 .btn-ant:hover,.btn-pro:hover{
-    background-color: var(--secundaria);
+    background-color: var(--principal);
     border-color: var(--secundaria);
-    color: var(--principal);
+    color: var(--secundaria);
 }
 
 table { 
@@ -110,6 +112,7 @@ tbody .diaAtual{
 .calendario .mesAnterior:hover, .calendario .proximoMes:hover{background: var(--cinza1); border-radius: 10px;}
 
 .boxSearch {
+
     position: absolute;
     border: solid 1px black;
     border-radius: 30px;
@@ -117,7 +120,7 @@ tbody .diaAtual{
     color: white;
     display: flex;
     flex-wrap: wrap;
-    width: 48vw;
+    width: 50vw;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

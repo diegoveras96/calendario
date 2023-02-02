@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
         container.style.zIndex = "2";
 
         opcoes.addEventListener("click", (evento)=>{
-            let marcado = document.querySelector('.clicado')
+            let marcado = document.querySelector('.clicado');
             if(marcado != null){
-                marcado.classList.remove('clicado')
+                marcado.classList.remove('clicado');
             }
             mes = parseInt(evento.target.dataset.mes);
             opcoes.classList.add('clicado');
@@ -76,14 +76,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     escMes[i].remove();
                 }
                 escAno.remove();
-              //  container.parentNode.removeChild(container);
               if(mes >= mesAt && ano >= anoAt){
                 mes = mesAt;
             }
                 getDaysCalendar(mes, ano)
             })
         })
-                 
     }
     
 
@@ -144,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
             
-            data = String(ano) + ' ' + String(dataMes) + ' ' + String(dia); //Variável que guarda a data no formato americano!
+            data = `${ano} ${dataMes} ${dia}`; //Variável que guarda a data no formato americano!
             console.log(data);
 
             getDaysCalendar(mes, ano);
